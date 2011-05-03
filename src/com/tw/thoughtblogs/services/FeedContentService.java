@@ -1,10 +1,16 @@
 package com.tw.thoughtblogs.services;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Toast;
+import com.tw.thoughtblogs.Bloggers;
+import com.tw.thoughtblogs.R;
 import com.tw.thoughtblogs.RSSReader;
 import com.tw.thoughtblogs.model.Blog;
 import com.tw.thoughtblogs.model.BlogData;
@@ -52,6 +58,25 @@ public class FeedContentService extends Service {
             blogData.store(blogs);
             Intent intent = new Intent(REFRESH_INTENT);
             sendBroadcast(intent);
+            notifyStatusBar(blogs.size());
         }
+    }
+
+    private void notifyStatusBar(int size) {
+        String ns = Context.NOTIFICATION_SERVICE;
+        int icon = R.drawable.notification_icon;
+        CharSequence tickerText = " New ThoughtBlogs";
+        long when = System.currentTimeMillis();
+        Notification notification = new Notification(icon, tickerText, when);
+        notification.flags = Notification.FLAG_AUTO_CANCEL;
+
+        Context context = getApplicationContext();
+        CharSequence contentText = size + " new entries have been posted on ThoughtBlogs.";
+        Intent notificationIntent = new Intent(this, Bloggers.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        notification.setLatestEventInfo(context, tickerText, contentText, contentIntent);
+
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
+        mNotificationManager.notify(1, notification);
     }
 }
