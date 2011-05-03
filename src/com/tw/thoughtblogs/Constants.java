@@ -1,8 +1,8 @@
 package com.tw.thoughtblogs;
 
 public class Constants {
-        public static final String FEED_URL = "http://feeds.feedburner.com/PlanetTw";
-//    public static final String FEED_URL = "http://news.google.com/news?pz=1&cf=all&ned=in&hl=en&topic=h&num=3&output=rss";
+    public static final String FEED_URL = "http://feeds.feedburner.com/PlanetTw";
+    //    public static final String FEED_URL = "http://news.google.com/news?pz=1&cf=all&ned=in&hl=en&topic=h&num=3&output=rss";
     public static final String UTF_8 = "UTF-8";
     public static final String ITEM = "item";
     public static final String ORIGLINK = "feedburner:origLink";
@@ -22,7 +22,7 @@ public class Constants {
     public static final String LAST_PARSED_DATE = "last_parsed_date";
 
     public static final int DATABASE_VERSION = 1;
-    public static final String[] FROM = {TITLE, _ID};
-    public static final int[] TO = {R.id.title};
+    public static final String[] FROM = {TITLE, LINK, _ID};
+    public static final int[] TO = {R.id.title, R.id.link};
     public static final String EEE_DD_MMM_YYYY_HH_MM_SS_ZZZ = "EEE, dd MMM yyyy HH:mm:ss zzz";
 }

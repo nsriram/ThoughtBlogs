@@ -6,14 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import com.tw.thoughtblogs.Constants;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import static com.tw.thoughtblogs.Constants.*;
-import static com.tw.thoughtblogs.Constants.LAST_PARSED_DATE;
 
 public class BlogData extends SQLiteOpenHelper {
 
@@ -51,15 +49,15 @@ public class BlogData extends SQLiteOpenHelper {
 
     public void store(List<Blog> blogs) {
         SQLiteDatabase db = getWritableDatabase();
+        Date now = new GregorianCalendar().getTime();
         for (Blog blog : blogs) {
             ContentValues values = new ContentValues();
-            values.put(Constants.LINK, blog.getOrigLink());
-            values.put(Constants.TITLE, blog.getTitle());
-            values.put(Constants.DATE, blog.getPubDate());
+            values.put(LINK, blog.getOrigLink());
+            values.put(TITLE, blog.getTitle());
+            values.put(DATE, blog.getPubDate());
             db.insert(EVENTS_TABLE, null, values);
         }
         Log.v("BlogData ", "Blog Entries Stored " + blogs.size());
-        Date now = new GregorianCalendar().getTime();
         ContentValues values = new ContentValues();
         values.put(LAST_PARSED_DATE, now.toString());
         db.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
@@ -82,13 +80,5 @@ public class BlogData extends SQLiteOpenHelper {
         notes.close();
         Log.v("BlogData", "LastParsedDate" + date);
         return date;
-    }
-
-    public void updateLastParsedDate() {
-        SQLiteDatabase database = getWritableDatabase();
-        Date now = new GregorianCalendar().getTime();
-        ContentValues values = new ContentValues();
-        values.put(LAST_PARSED_DATE, now.toString());
-        database.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
     }
 }

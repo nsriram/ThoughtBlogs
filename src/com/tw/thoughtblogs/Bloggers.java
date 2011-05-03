@@ -6,9 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import com.tw.thoughtblogs.model.BlogData;
 import com.tw.thoughtblogs.services.FeedContentService;
 
@@ -63,5 +67,17 @@ public class Bloggers extends ListActivity {
         if (blogData == null) {
             this.blogData = new BlogData(this);
         }
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        TextView linkText = (TextView) v.findViewById(R.id.link);
+        TextView title = (TextView) v.findViewById(R.id.title);
+        String blogURL = linkText.getText().toString();
+        Log.v("Bloggers ", "URL " + blogURL);
+        Log.v("Bloggers ", "Title " + title.getText().toString());
+        Intent showContent = new Intent(getApplicationContext(), BlogDetailActivity.class);
+        showContent.setData(Uri.parse(blogURL));
+        startActivity(showContent);
     }
 }

@@ -32,7 +32,6 @@ public class FeedParser {
                 if (formatter.isParsed(blog.getPubDate(), lastParsedDate)) {
                     stopParsing = true;
                 } else {
-                    Log.v("FeedParser ", blog.getTitle());
                     entries.add(blog);
                 }
             }
@@ -51,8 +50,9 @@ public class FeedParser {
                 if (tagName.equals(TITLE)) {
                     title = xpp.nextText();
                 }
-                if (xpp.getName().equals(ORIGLINK)) {
+                if (xpp.getName().equals(LINK)) {
                     origLink = xpp.nextText();
+                    Log.v("FeedParser ", origLink);
                 }
                 if (xpp.getName().equals(PUBDATE)) {
                     pubDate = xpp.nextText();
