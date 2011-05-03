@@ -1,9 +1,11 @@
 package com.tw.thoughtblogs;
 
 import com.tw.thoughtblogs.model.Blog;
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class RSSReader {
             HttpGet get = new HttpGet(feedURL);
             DefaultHttpClient httpClient = new DefaultHttpClient();
             response = httpClient.execute(get);
-            blogs = feedParser.parse(response.getEntity().getContent(),lastParsedDate);
+            blogs = feedParser.parse(response.getEntity().getContent(), lastParsedDate);
         } catch (Exception e) {
             e.printStackTrace();
         }

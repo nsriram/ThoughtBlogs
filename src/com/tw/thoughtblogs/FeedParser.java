@@ -1,5 +1,6 @@
 package com.tw.thoughtblogs;
 
+import android.util.Log;
 import com.tw.thoughtblogs.model.Blog;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -7,9 +8,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,13 +24,15 @@ public class FeedParser {
         XmlPullParser xpp = factory.newPullParser();
         xpp.setInput(content, UTF_8);
         int eventType = xpp.getEventType();
-        boolean continueParsing = true;
-        while (eventType != END_DOCUMENT && continueParsing) {
+        boolean stopParsing = false;
+        DateFormatter formatter = new DateFormatter(EEE_DD_MMM_YYYY_HH_MM_SS_ZZZ);
+        while (eventType != END_DOCUMENT && !stopParsing) {
             if (eventType == START_TAG && xpp.getName() != null && xpp.getName().equals(ITEM)) {
                 Blog blog = parseItem(xpp, eventType);
-                if (isParsed(blog, lastParsedDate)) {
-                    continueParsing = false;
+                if (formatter.isParsed(blog.getPubDate(), lastParsedDate)) {
+                    stopParsing = true;
                 } else {
+                    Log.v("FeedParser ", blog.getTitle());
                     entries.add(blog);
                 }
             }
@@ -64,11 +64,5 @@ public class FeedParser {
             eventType = xpp.next();
         }
         return new Blog(title, origLink, pubDate);
-    }
-
-    private boolean isParsed(Blog blog, Date lastParsedDate) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat(EEE_DD_MMM_YYYY_HH_MM_SS_ZZZ);
-        Date date = formatter.parse(blog.getPubDate());
-        return lastParsedDate.after(date);
     }
 }

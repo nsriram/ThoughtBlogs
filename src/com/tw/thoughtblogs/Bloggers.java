@@ -37,7 +37,6 @@ public class Bloggers extends ListActivity {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constants.REFRESH_INTENT);
-        //filter.addDataScheme("");
         this.registerReceiver(this.receiver, filter);
     }
 
@@ -49,7 +48,6 @@ public class Bloggers extends ListActivity {
     }
 
     private void setListContent() {
-        Log.v("Bloggers ", "setListContent");
         Cursor cursor = blogData.load();
         startManagingCursor(cursor);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.list_item, cursor, FROM, TO);

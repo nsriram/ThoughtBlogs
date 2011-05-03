@@ -34,6 +34,7 @@ public class FeedContentService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mHandler.removeCallbacks(contentFetchTask);
         Toast.makeText(this, "Service onDestroy() ", Toast.LENGTH_LONG).show();
     }
 
@@ -41,11 +42,16 @@ public class FeedContentService extends Service {
         public void run() {
             Date lastParsedDate = blogData.lastParsedDate();
             List<Blog> blogs = rssReader.fetchLatestEntries(lastParsedDate);
-            blogData.store(blogs);
-            Intent intent = new Intent(REFRESH_INTENT);
-            sendBroadcast(intent);
-            blogData.updateLastParsedDate();
+            storeBlogs(blogs);
             mHandler.postDelayed(contentFetchTask, ONE_MINUTE);
         }
     };
+
+    private void storeBlogs(List<Blog> blogs) {
+        if (blogs.size() > 0) {
+            blogData.store(blogs);
+            Intent intent = new Intent(REFRESH_INTENT);
+            sendBroadcast(intent);
+        }
+    }
 }

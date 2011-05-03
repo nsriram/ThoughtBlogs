@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import static com.tw.thoughtblogs.Constants.*;
+import static com.tw.thoughtblogs.Constants.LAST_PARSED_DATE;
 
 public class BlogData extends SQLiteOpenHelper {
 
@@ -30,14 +31,15 @@ public class BlogData extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE " + PARSE_CHECKPOINT_TABLE + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LAST_PARSED_DATE + " TEXT NOT NULL);");
-        database.insert(PARSE_CHECKPOINT_TABLE, null, initTimeStamp(new GregorianCalendar(2011, 1, 1).getTime()));
+        long insert = database.insert(PARSE_CHECKPOINT_TABLE, null, initTimeStamp(new GregorianCalendar(2011, 1, 1).getTime()));
+        Log.v("BlogData", "ID=" + insert);
     }
 
     private ContentValues initTimeStamp(Date date) {
         ContentValues values = new ContentValues();
         String past = date.toString();
-        Log.v("BlogData", past);
-        values.put(Constants.LAST_PARSED_DATE, past);
+        Log.v("BlogData", "Last Parsed " + past);
+        values.put(LAST_PARSED_DATE, past);
         return values;
     }
 
@@ -57,6 +59,10 @@ public class BlogData extends SQLiteOpenHelper {
             db.insert(EVENTS_TABLE, null, values);
         }
         Log.v("BlogData ", "Blog Entries Stored " + blogs.size());
+        Date now = new GregorianCalendar().getTime();
+        ContentValues values = new ContentValues();
+        values.put(LAST_PARSED_DATE, now.toString());
+        db.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
     }
 
     public Cursor load() {
@@ -74,12 +80,15 @@ public class BlogData extends SQLiteOpenHelper {
             date = new Date(notes.getString(0));
         }
         notes.close();
-        Log.v("BlogData", "" + date);
+        Log.v("BlogData", "LastParsedDate" + date);
         return date;
     }
 
     public void updateLastParsedDate() {
-        SQLiteDatabase database = getReadableDatabase();
-        database.update(PARSE_CHECKPOINT_TABLE, initTimeStamp(new GregorianCalendar().getTime()), "_id = 0", null);
+        SQLiteDatabase database = getWritableDatabase();
+        Date now = new GregorianCalendar().getTime();
+        ContentValues values = new ContentValues();
+        values.put(LAST_PARSED_DATE, now.toString());
+        database.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
     }
 }
