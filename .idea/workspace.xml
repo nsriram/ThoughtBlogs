@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caf9a82b-4fe9-464e-b53e-179acf9bcf75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/blog_detail.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/tw/thoughtblogs/R.java" afterPath="$PROJECT_DIR$/gen/com/tw/thoughtblogs/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/list_item.xml" afterPath="$PROJECT_DIR$/res/layout/list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/Bloggers.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/Bloggers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java" />
     </list>
     <ignored path="ThoughtBlogs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,7 +62,35 @@
     <favorites_list name="ThoughtBlogs" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="list_item.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/layout/list_item.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="23" selection-start="379" selection-end="379" vertical-scroll-proportion="0.3125">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bloggers.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Bloggers.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="56" column="103" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="4" selection-start="1132" selection-end="1132" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -538,7 +558,7 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32981315" sideWeight="0.63246554" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49157733" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.719755" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.424196" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20227458" sideWeight="0.4895449" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -562,7 +582,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. Adding Status bar Notifications Icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. On clicking the blog entry, it will open the blog in a webview (dirty functionality)" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -578,6 +598,7 @@
     <MESSAGE value="Sriram : Defects&#10;1. Fixed Parse Only new Items. &#10;2.Notifying Only When new blogs are there." />
     <MESSAGE value="Sriram : &#10;1. Adding Status bar Notifications" />
     <MESSAGE value="Sriram : &#10;1. Adding Status bar Notifications Icons" />
+    <MESSAGE value="Sriram : &#10;1. On clicking the blog entry, it will open the blog in a webview (dirty functionality)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -656,23 +677,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Bloggers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="86" selection-start="1678" selection-end="1678" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="38" selection-start="1957" selection-end="1957" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="43" selection-start="835" selection-end="839" vertical-scroll-proportion="0.3846154">
           <folding />
         </state>
       </provider>
@@ -684,9 +691,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="4" selection-start="1132" selection-end="1132" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Bloggers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="103" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/list_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="443" selection-end="443" vertical-scroll-proportion="0.21634616">
+        <state line="8" column="23" selection-start="379" selection-end="379" vertical-scroll-proportion="0.3125">
           <folding />
         </state>
       </provider>
