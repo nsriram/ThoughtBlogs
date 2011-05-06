@@ -26,7 +26,7 @@ public class FeedParser {
         int eventType = xpp.getEventType();
         boolean stopParsing = false;
         DateFormatter formatter = new DateFormatter(EEE_DD_MMM_YYYY_HH_MM_SS_ZZZ);
-        while (eventType != END_DOCUMENT && !stopParsing) {
+        while (eventType != END_DOCUMENT && !stopParsing && entries.size() < 15) {
             if (eventType == START_TAG && xpp.getName() != null && xpp.getName().equals(ITEM)) {
                 Blog blog = parseItem(xpp, eventType);
                 if (formatter.isParsed(blog.getPubDate(), lastParsedDate)) {
@@ -42,7 +42,7 @@ public class FeedParser {
 
     private Blog parseItem(XmlPullParser xpp, final int parentEventType) throws XmlPullParserException, IOException {
         int eventType = parentEventType;
-        String title = "", origLink = "", pubDate = "";
+        String title = "", origLink = "", pubDate = "", description = "";
         boolean continueParsingItem = true;
         while (continueParsingItem) {
             if (eventType == START_TAG && xpp.getName() != null) {
@@ -52,7 +52,9 @@ public class FeedParser {
                 }
                 if (xpp.getName().equals(LINK)) {
                     origLink = xpp.nextText();
-                    Log.v("FeedParser ", origLink);
+                }
+                if (xpp.getName().equals(DESCRIPTION)) {
+                    description = xpp.nextText();
                 }
                 if (xpp.getName().equals(PUBDATE)) {
                     pubDate = xpp.nextText();
@@ -63,6 +65,6 @@ public class FeedParser {
             }
             eventType = xpp.next();
         }
-        return new Blog(title, origLink, pubDate);
+        return new Blog(title, origLink, pubDate, description);
     }
 }

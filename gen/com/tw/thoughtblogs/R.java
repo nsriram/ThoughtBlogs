@@ -16,7 +16,7 @@ public final class R {
     }
     public static final class id {
         public static final int blogDetailView=0x7f050000;
-        public static final int link=0x7f050002;
+        public static final int blog_id=0x7f050002;
         public static final int title=0x7f050001;
     }
     public static final class layout {

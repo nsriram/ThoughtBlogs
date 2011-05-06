@@ -9,7 +9,7 @@
             android:layout_height="wrap_content"
             android:textSize="14dip"/>
     <TextView
-            android:id="@+id/link"
+            android:id="@+id/blog_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"/>

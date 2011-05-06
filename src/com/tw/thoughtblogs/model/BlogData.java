@@ -25,6 +25,7 @@ public class BlogData extends SQLiteOpenHelper {
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + LINK + " TEXT NOT NULL,"
                 + TITLE + " TEXT NOT NULL,"
+                + DESCRIPTION + " TEXT NOT NULL,"
                 + DATE + " TEXT NOT NULL );");
         database.execSQL("CREATE TABLE " + PARSE_CHECKPOINT_TABLE + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -55,6 +56,7 @@ public class BlogData extends SQLiteOpenHelper {
             values.put(LINK, blog.getOrigLink());
             values.put(TITLE, blog.getTitle());
             values.put(DATE, blog.getPubDate());
+            values.put(DESCRIPTION, blog.getDescription());
             db.insert(EVENTS_TABLE, null, values);
         }
         Log.v("BlogData ", "Blog Entries Stored " + blogs.size());
@@ -80,5 +82,18 @@ public class BlogData extends SQLiteOpenHelper {
         notes.close();
         Log.v("BlogData", "LastParsedDate" + date);
         return date;
+    }
+
+    public String loadDescription(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor descriptions = null;
+        descriptions = db.rawQuery("select description from " + EVENTS_TABLE +
+                " where _id=" + id, null);
+        String details = null;
+        if (descriptions.getCount() > 0 && descriptions.moveToNext()) {
+            details = descriptions.getString(0);
+        }
+        descriptions.close();
+        return details;
     }
 }

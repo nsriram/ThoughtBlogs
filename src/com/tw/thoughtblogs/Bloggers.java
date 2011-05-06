@@ -45,7 +45,6 @@ public class Bloggers extends ListActivity {
     }
 
     private void handleIntent(Intent intent) {
-        Log.v("Bloggers ", intent.toString());
         if (Constants.REFRESH_INTENT.equals(intent.getAction())) {
             setListContent();
         }
@@ -71,11 +70,8 @@ public class Bloggers extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        TextView linkText = (TextView) v.findViewById(R.id.link);
-        TextView title = (TextView) v.findViewById(R.id.title);
-        String blogURL = linkText.getText().toString();
-        Log.v("Bloggers ", "URL " + blogURL);
-        Log.v("Bloggers ", "Title " + title.getText().toString());
+        TextView blogId = (TextView) v.findViewById(R.id.blog_id);
+        String blogURL = blogId.getText().toString();
         Intent showContent = new Intent(getApplicationContext(), BlogDetailActivity.class);
         showContent.setData(Uri.parse(blogURL));
         startActivity(showContent);
