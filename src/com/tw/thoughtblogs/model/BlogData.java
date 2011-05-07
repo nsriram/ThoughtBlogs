@@ -67,9 +67,9 @@ public class BlogData extends SQLiteOpenHelper {
 
     public Cursor load() {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor query = db.query(EVENTS_TABLE, FROM, null, null, null, null, null);
-        Log.v("BlogData ", "Count " + query.getCount());
-        return query;
+        Cursor entries = db.rawQuery("select title, _id from events order by _id desc", null);
+        Log.v("BlogData ", "Loading " + entries.getCount());
+        return entries;
     }
 
     public Date lastParsedDate() {
