@@ -84,16 +84,20 @@ public class BlogData extends SQLiteOpenHelper {
         return date;
     }
 
-    public String loadDescription(String id) {
+    public Blog loadDescription(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
+        Blog blog = null;
         Cursor descriptions = null;
-        descriptions = db.rawQuery("select description from " + EVENTS_TABLE +
+        descriptions = db.rawQuery("select link,title,description from " + EVENTS_TABLE +
                 " where _id=" + id, null);
-        String details = null;
+        String details = null, title = null, link = null;
         if (descriptions.getCount() > 0 && descriptions.moveToNext()) {
-            details = descriptions.getString(0);
+            link = descriptions.getString(0);
+            title = descriptions.getString(1);
+            details = descriptions.getString(2);
+            blog = new Blog(title, link, null, details);
         }
         descriptions.close();
-        return details;
+        return blog;
     }
 }

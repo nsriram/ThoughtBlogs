@@ -16,10 +16,11 @@ public final class R {
         public static final int notification_icon=0x7f020002;
     }
     public static final class id {
-        public static final int author_icon=0x7f050001;
-        public static final int blogDetailView=0x7f050000;
-        public static final int blog_id=0x7f050003;
-        public static final int title=0x7f050002;
+        public static final int author_icon=0x7f050002;
+        public static final int blogDetailView=0x7f050001;
+        public static final int blog_id=0x7f050004;
+        public static final int detail_view_title=0x7f050000;
+        public static final int title=0x7f050003;
     }
     public static final class layout {
         public static final int blog_detail=0x7f030000;
