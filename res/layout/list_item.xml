@@ -3,14 +3,24 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content">
-    <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dip"/>
-    <TextView
-            android:id="@+id/blog_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/author_icon"
+                android:layout_width="32dip"
+                android:layout_height="32dip"
+                android:src="@drawable/author_icon"/>
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dip"/>
+        <TextView
+                android:id="@+id/blog_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+    </LinearLayout>
 </LinearLayout>

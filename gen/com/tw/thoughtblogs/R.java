@@ -11,13 +11,15 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
-        public static final int notification_icon=0x7f020001;
+        public static final int author_icon=0x7f020000;
+        public static final int icon=0x7f020001;
+        public static final int notification_icon=0x7f020002;
     }
     public static final class id {
+        public static final int author_icon=0x7f050001;
         public static final int blogDetailView=0x7f050000;
-        public static final int blog_id=0x7f050002;
-        public static final int title=0x7f050001;
+        public static final int blog_id=0x7f050003;
+        public static final int title=0x7f050002;
     }
     public static final class layout {
         public static final int blog_detail=0x7f030000;
