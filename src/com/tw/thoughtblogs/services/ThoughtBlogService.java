@@ -18,9 +18,9 @@ import com.tw.thoughtblogs.model.BlogData;
 import java.util.Date;
 import java.util.List;
 
-import static com.tw.thoughtblogs.Constants.*;
+import static com.tw.thoughtblogs.util.Constants.*;
 
-public class FeedContentService extends Service {
+public class ThoughtBlogService extends Service {
     private Handler mHandler = new Handler();
     private RSSReader rssReader = new RSSReader(FEED_URL);
     private BlogData blogData;
@@ -49,7 +49,7 @@ public class FeedContentService extends Service {
             Date lastParsedDate = blogData.lastParsedDate();
             List<Blog> blogs = rssReader.fetchLatestEntries(lastParsedDate);
             storeBlogs(blogs);
-            mHandler.postDelayed(contentFetchTask, ONE_MINUTE);
+            mHandler.postDelayed(contentFetchTask, ONE_MINUTE * 60);
         }
     };
 
@@ -71,7 +71,7 @@ public class FeedContentService extends Service {
         notification.flags = Notification.FLAG_AUTO_CANCEL;
 
         Context context = getApplicationContext();
-        CharSequence contentText = size + " new entries have been posted on ThoughtBlogs.";
+        CharSequence contentText = size + " new entries posted on ThoughtBlogs.";
         Intent notificationIntent = new Intent(this, Bloggers.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         notification.setLatestEventInfo(context, tickerText, contentText, contentIntent);

@@ -1,4 +1,4 @@
-package com.tw.thoughtblogs;
+package com.tw.thoughtblogs.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;

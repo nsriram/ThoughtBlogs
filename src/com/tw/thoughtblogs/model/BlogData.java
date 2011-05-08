@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static com.tw.thoughtblogs.Constants.*;
+import static com.tw.thoughtblogs.util.Constants.*;
 
 public class BlogData extends SQLiteOpenHelper {
 

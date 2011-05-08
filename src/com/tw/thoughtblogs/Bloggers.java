@@ -8,16 +8,16 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import com.tw.thoughtblogs.model.BlogData;
-import com.tw.thoughtblogs.services.FeedContentService;
+import com.tw.thoughtblogs.services.ThoughtBlogService;
+import com.tw.thoughtblogs.util.Constants;
 
-import static com.tw.thoughtblogs.Constants.FROM;
-import static com.tw.thoughtblogs.Constants.TO;
+import static com.tw.thoughtblogs.util.Constants.FROM;
+import static com.tw.thoughtblogs.util.Constants.TO;
 
 public class Bloggers extends ListActivity {
 
@@ -58,7 +58,7 @@ public class Bloggers extends ListActivity {
     }
 
     private void startFeedContentService() {
-        Intent intent = new Intent(Bloggers.this, FeedContentService.class);
+        Intent intent = new Intent(Bloggers.this, ThoughtBlogService.class);
         startService(intent);
     }
 

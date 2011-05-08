@@ -1,7 +1,7 @@
 package com.tw.thoughtblogs;
 
-import android.util.Log;
 import com.tw.thoughtblogs.model.Blog;
+import com.tw.thoughtblogs.util.DateFormatter;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.tw.thoughtblogs.Constants.*;
+import static com.tw.thoughtblogs.util.Constants.*;
 import static org.xmlpull.v1.XmlPullParser.*;
 
 public class FeedParser {

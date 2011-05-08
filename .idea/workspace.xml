@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caf9a82b-4fe9-464e-b53e-179acf9bcf75" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/FeedNotification.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/DateFormatter.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/util/DateFormatter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/FeedContentService.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ThoughtBlogService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/tw/thoughtblogs/R.java" afterPath="$PROJECT_DIR$/gen/com/tw/thoughtblogs/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/blog_detail.xml" afterPath="$PROJECT_DIR$/res/layout/blog_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/Bloggers.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/Bloggers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java" />
     </list>
     <ignored path="ThoughtBlogs.iws" />
@@ -66,57 +70,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BlogDetailActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java">
+      <file leaf-file-name="ThoughtBlogService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ThoughtBlogService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="50" selection-start="644" selection-end="644" vertical-scroll-proportion="0.53125">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlogData.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="20" selection-start="3873" selection-end="3873" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="43" selection-start="641" selection-end="645" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="blog_detail.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/blog_detail.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="36" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="36" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list_item.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/list_item.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="20" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0">
+            <state line="49" column="21" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.2578125">
               <folding />
             </state>
           </provider>
@@ -136,13 +93,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ContentFetchTimer.java" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/DBConstants.java" />
         <option value="$PROJECT_DIR$/res/layout/item.xml" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/DateFormatter.java" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/RSSReader.java" />
-        <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/FeedContentService.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/model/Blog.java" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java" />
@@ -152,6 +107,8 @@
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java" />
         <option value="$PROJECT_DIR$/res/layout/blog_detail.xml" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/FeedContentService.java" />
+        <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ThoughtBlogService.java" />
       </list>
     </option>
   </component>
@@ -261,6 +218,50 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtBlogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtBlogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thoughtblogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtBlogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThoughtBlogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thoughtblogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -310,9 +311,11 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="ExportedApkPath" value="$USER_HOME$/Desktop/ThoughtBlogs.apk" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propCompiler" />
+    <property name="ExportedModule" value="ThoughtBlogs" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.includeJavaFiles" value="false" />
@@ -589,7 +592,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25426483" sideWeight="0.63705975" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25426483" sideWeight="0.63246554" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36294028" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5237366" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20227458" sideWeight="0.4895449" order="4" side_tool="false" content_ui="tabs" />
@@ -614,7 +617,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. Fixing Chinese CharacterSet Issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. Added header for detail view." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -636,6 +639,7 @@
     <MESSAGE value="Sriram : &#10;1. Ordering Blog List by _id, which is effectively the historical order." />
     <MESSAGE value="Sriram : &#10;1. Added Author Icon Styling" />
     <MESSAGE value="Sriram : &#10;1. Fixing Chinese CharacterSet Issue" />
+    <MESSAGE value="Sriram : &#10;1. Added header for detail view." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -645,12 +649,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/services/FeedNotification.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/DateFormatter.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/util/DateFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="49" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" />
       </provider>
@@ -696,54 +695,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/services/FeedContentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="35" selection-start="2011" selection-end="2011" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="36" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
+        <state line="7" column="36" selection-start="316" selection-end="316" vertical-scroll-proportion="0.2734375">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/Constants.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="43" selection-start="641" selection-end="645" vertical-scroll-proportion="0.0">
+        <state line="14" column="43" selection-start="641" selection-end="645" vertical-scroll-proportion="0.546875">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/model/BlogData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="20" selection-start="3873" selection-end="3873" vertical-scroll-proportion="0.0">
+        <state line="100" column="20" selection-start="3873" selection-end="3873" vertical-scroll-proportion="1.3234501">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/list_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="20" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0">
+        <state line="13" column="20" selection-start="671" selection-end="671" vertical-scroll-proportion="0.34375">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/blog_detail.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="36" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0">
+        <state line="10" column="36" selection-start="461" selection-end="461" vertical-scroll-proportion="0.390625">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="50" selection-start="644" selection-end="644" vertical-scroll-proportion="0.53125">
+        <state line="21" column="19" selection-start="601" selection-end="601" vertical-scroll-proportion="0.4921875">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ThoughtBlogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="21" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.2578125">
+          <folding />
         </state>
       </provider>
     </entry>

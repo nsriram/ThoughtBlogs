@@ -1,4 +1,6 @@
-package com.tw.thoughtblogs;
+package com.tw.thoughtblogs.util;
+
+import com.tw.thoughtblogs.R;
 
 public class Constants {
     public static final String FEED_URL = "http://feeds.feedburner.com/PlanetTw";
