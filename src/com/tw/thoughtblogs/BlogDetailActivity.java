@@ -25,7 +25,7 @@ public class BlogDetailActivity extends Activity {
         details = details.replaceAll("#", "%23");
         details = details.replaceAll("%", "%25");
         details = details.replaceAll("\\?", "%27");
-        details = "<html><body>" + details + "</body></html>";
+        details = "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-16le\"><body>" + details + "</body></html>";
         WebView viewer = (WebView) findViewById(R.id.blogDetailView);
         viewer.loadData(details, "text/html", "utf-8");
     }
