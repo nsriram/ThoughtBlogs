@@ -9,6 +9,7 @@ import org.apache.http.message.BasicHeader;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class RSSReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Collections.reverse(blogs);
         return blogs;
     }
 }

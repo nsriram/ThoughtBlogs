@@ -49,7 +49,7 @@ public class ThoughtBlogService extends Service {
             Date lastParsedDate = blogData.lastParsedDate();
             List<Blog> blogs = rssReader.fetchLatestEntries(lastParsedDate);
             storeBlogs(blogs);
-            mHandler.postDelayed(contentFetchTask, ONE_MINUTE * 60);
+            mHandler.postDelayed(contentFetchTask, ONE_MINUTE);
         }
     };
 
