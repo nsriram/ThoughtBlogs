@@ -11,11 +11,11 @@ public class Constants {
     public static final String REFRESH_INTENT = "com.tw.thoughtblogs.REFRESH";
 
     //Database Constants
-    public static final String _ID = "_id";
     public static final String DATABASE_NAME = "thoughtblogs.db";
     public static final String EVENTS_TABLE = "events";
-    public static final String LINK = "link";
+    public static final String _ID = "_id";
     public static final String TITLE = "title";
+    public static final String LINK = "link";
     public static final String DESCRIPTION = "description";
     public static final String STATUS = "status";
 

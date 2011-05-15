@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -31,9 +32,8 @@ public class BlogData extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE " + PARSE_CHECKPOINT_TABLE + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LAST_PARSED_DATE + " TEXT NOT NULL);");
-        long insert = database.insert(PARSE_CHECKPOINT_TABLE, null,
+        database.insert(PARSE_CHECKPOINT_TABLE, null,
                 initTimeStamp(new GregorianCalendar(2011, 1, 1).getTime()));
-        Log.v("BlogData", "ID=" + insert);
     }
 
     private ContentValues initTimeStamp(Date date) {
@@ -68,11 +68,16 @@ public class BlogData extends SQLiteOpenHelper {
         db.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
     }
 
-    public Cursor load() {
+    public List<Blog> list() {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor entries = db.rawQuery("select title, _id from events order by _id desc", null);
-        Log.v("BlogData ", "Loading " + entries.getCount());
-        return entries;
+        List<Blog> blogs = new ArrayList<Blog>();
+        Cursor entries = db.rawQuery("select _id,title,status from events order by _id desc", null);
+        while (entries.getCount() > 0 && entries.moveToNext()) {
+            Blog blog = new Blog(entries.getInt(0), entries.getString(1), null, null, null, entries.getInt(2));
+            blogs.add(blog);
+        }
+        entries.close();
+        return blogs;
     }
 
     public Date lastParsedDate() {
@@ -91,19 +96,12 @@ public class BlogData extends SQLiteOpenHelper {
     public Blog loadDescription(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Blog blog = null;
-        Cursor descriptions = null;
-        descriptions = db.rawQuery("select link,title,description,status from " + EVENTS_TABLE +
-                " where _id=" + id, null);
-        String details = null, title = null, link = null;
-        int status;
-        if (descriptions.getCount() > 0 && descriptions.moveToNext()) {
-            link = descriptions.getString(0);
-            title = descriptions.getString(1);
-            details = descriptions.getString(2);
-            status = descriptions.getInt(3);
-            blog = new Blog(title, link, null, details, status);
+        Cursor cursor = null;
+        cursor = db.rawQuery("select link,title,description,status from " + EVENTS_TABLE + " where _id=" + id, null);
+        if (cursor.getCount() > 0 && cursor.moveToNext()) {
+            blog = new Blog(cursor.getString(1), cursor.getString(0), null, cursor.getString(2), cursor.getInt(3));
         }
-        descriptions.close();
+        cursor.close();
         return blog;
     }
 

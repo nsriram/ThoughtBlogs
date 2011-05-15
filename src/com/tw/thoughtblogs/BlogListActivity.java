@@ -5,28 +5,26 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import com.tw.thoughtblogs.model.Blog;
 import com.tw.thoughtblogs.model.BlogData;
 import com.tw.thoughtblogs.services.ThoughtBlogService;
 import com.tw.thoughtblogs.util.Constants;
 
-import static com.tw.thoughtblogs.util.Constants.FROM;
-import static com.tw.thoughtblogs.util.Constants.TO;
+import java.util.List;
 
 public class BlogListActivity extends ListActivity {
-
-    private BlogData blogData;
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            handleIntent(intent);
+            if (Constants.REFRESH_INTENT.equals(intent.getAction())) {
+                setListContent();
+            }
         }
     };
 
@@ -35,7 +33,6 @@ public class BlogListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         startFeedContentService();
-        setBlogData();
         setListContent();
         handleIntent(getIntent());
 
@@ -51,11 +48,8 @@ public class BlogListActivity extends ListActivity {
     }
 
     private void setListContent() {
-        Cursor cursor = blogData.load();
-        startManagingCursor(cursor);
-        SimpleCursorAdapter adapter =
-                new SimpleCursorAdapter(this, R.layout.list_item, cursor, FROM, TO);
-        this.setListAdapter(adapter);
+        List<Blog> blogs = new BlogData(this).list();
+        this.setListAdapter(new BlogAdapter(this, R.layout.list_item, blogs));
     }
 
     private void startFeedContentService() {
@@ -63,17 +57,11 @@ public class BlogListActivity extends ListActivity {
         startService(intent);
     }
 
-    private void setBlogData() {
-        if (blogData == null) {
-            this.blogData = new BlogData(this);
-        }
-    }
-
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         TextView blogIdTextView = (TextView) v.findViewById(R.id.blog_id);
         String blogId = blogIdTextView.getText().toString();
-        blogData.markRead(blogId);
+        new BlogData(this).markRead(blogId);
         Intent showContent = new Intent(getApplicationContext(), BlogDetailActivity.class);
         showContent.setData(Uri.parse(blogId));
         startActivity(showContent);
