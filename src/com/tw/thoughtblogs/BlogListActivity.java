@@ -19,7 +19,7 @@ import com.tw.thoughtblogs.util.Constants;
 import static com.tw.thoughtblogs.util.Constants.FROM;
 import static com.tw.thoughtblogs.util.Constants.TO;
 
-public class Bloggers extends ListActivity {
+public class BlogListActivity extends ListActivity {
 
     private BlogData blogData;
 
@@ -53,12 +53,13 @@ public class Bloggers extends ListActivity {
     private void setListContent() {
         Cursor cursor = blogData.load();
         startManagingCursor(cursor);
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.list_item, cursor, FROM, TO);
+        SimpleCursorAdapter adapter =
+                new SimpleCursorAdapter(this, R.layout.list_item, cursor, FROM, TO);
         this.setListAdapter(adapter);
     }
 
     private void startFeedContentService() {
-        Intent intent = new Intent(Bloggers.this, ThoughtBlogService.class);
+        Intent intent = new Intent(BlogListActivity.this, ThoughtBlogService.class);
         startService(intent);
     }
 
@@ -70,10 +71,11 @@ public class Bloggers extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        TextView blogId = (TextView) v.findViewById(R.id.blog_id);
-        String blogURL = blogId.getText().toString();
+        TextView blogIdTextView = (TextView) v.findViewById(R.id.blog_id);
+        String blogId = blogIdTextView.getText().toString();
+        blogData.markRead(blogId);
         Intent showContent = new Intent(getApplicationContext(), BlogDetailActivity.class);
-        showContent.setData(Uri.parse(blogURL));
+        showContent.setData(Uri.parse(blogId));
         startActivity(showContent);
     }
 }

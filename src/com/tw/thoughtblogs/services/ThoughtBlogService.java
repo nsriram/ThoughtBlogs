@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Toast;
-import com.tw.thoughtblogs.Bloggers;
+import com.tw.thoughtblogs.BlogListActivity;
 import com.tw.thoughtblogs.R;
 import com.tw.thoughtblogs.RSSReader;
 import com.tw.thoughtblogs.model.Blog;
@@ -72,7 +72,7 @@ public class ThoughtBlogService extends Service {
 
         Context context = getApplicationContext();
         CharSequence contentText = size + " new entries posted on ThoughtBlogs.";
-        Intent notificationIntent = new Intent(this, Bloggers.class);
+        Intent notificationIntent = new Intent(this, BlogListActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         notification.setLatestEventInfo(context, tickerText, contentText, contentIntent);
 

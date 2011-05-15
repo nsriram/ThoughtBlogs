@@ -26,11 +26,13 @@ public class BlogData extends SQLiteOpenHelper {
                 + LINK + " TEXT NOT NULL,"
                 + TITLE + " TEXT NOT NULL,"
                 + DESCRIPTION + " TEXT NOT NULL,"
+                + STATUS + " INTEGER NOT NULL,"
                 + DATE + " TEXT NOT NULL );");
         database.execSQL("CREATE TABLE " + PARSE_CHECKPOINT_TABLE + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LAST_PARSED_DATE + " TEXT NOT NULL);");
-        long insert = database.insert(PARSE_CHECKPOINT_TABLE, null, initTimeStamp(new GregorianCalendar(2011, 1, 1).getTime()));
+        long insert = database.insert(PARSE_CHECKPOINT_TABLE, null,
+                initTimeStamp(new GregorianCalendar(2011, 1, 1).getTime()));
         Log.v("BlogData", "ID=" + insert);
     }
 
@@ -57,6 +59,7 @@ public class BlogData extends SQLiteOpenHelper {
             values.put(TITLE, blog.getTitle());
             values.put(DATE, blog.getPubDate());
             values.put(DESCRIPTION, blog.getDescription());
+            values.put(STATUS, blog.getStatus());
             db.insert(EVENTS_TABLE, null, values);
         }
         Log.v("BlogData ", "Blog Entries Stored " + blogs.size());
@@ -75,7 +78,8 @@ public class BlogData extends SQLiteOpenHelper {
     public Date lastParsedDate() {
         SQLiteDatabase db = getReadableDatabase();
         Date date = null;
-        Cursor notes = db.rawQuery("select " + LAST_PARSED_DATE + " from " + PARSE_CHECKPOINT_TABLE, null);
+        Cursor notes = db.rawQuery("select "
+                + LAST_PARSED_DATE + " from " + PARSE_CHECKPOINT_TABLE, null);
         if (notes.getCount() > 0 && notes.moveToNext()) {
             date = new Date(notes.getString(0));
         }
@@ -88,16 +92,25 @@ public class BlogData extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Blog blog = null;
         Cursor descriptions = null;
-        descriptions = db.rawQuery("select link,title,description from " + EVENTS_TABLE +
+        descriptions = db.rawQuery("select link,title,description,status from " + EVENTS_TABLE +
                 " where _id=" + id, null);
         String details = null, title = null, link = null;
+        int status;
         if (descriptions.getCount() > 0 && descriptions.moveToNext()) {
             link = descriptions.getString(0);
             title = descriptions.getString(1);
             details = descriptions.getString(2);
-            blog = new Blog(title, link, null, details);
+            status = descriptions.getInt(3);
+            blog = new Blog(title, link, null, details, status);
         }
         descriptions.close();
         return blog;
+    }
+
+    public void markRead(String id) {
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(STATUS, 0);
+        db.update(EVENTS_TABLE, values, "_ID=" + id, null);
     }
 }

@@ -65,6 +65,6 @@ public class FeedParser {
             }
             eventType = xpp.next();
         }
-        return new Blog(title, origLink, pubDate, description);
+        return new Blog(title, origLink, pubDate, description, 1);
     }
 }
