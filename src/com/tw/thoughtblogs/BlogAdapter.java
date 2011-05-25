@@ -35,8 +35,10 @@ public class BlogAdapter extends ArrayAdapter<Blog> {
             TextView titleView = (TextView) v.findViewById(R.id.title);
             if (titleView != null) {
                 titleView.setText(blog.getTitle());
-                if (blog.getStatus() == 1)
+                if (blog.getStatus() == 1) {
+                    titleView.setTextColor(-1);
                     titleView.setTypeface(null, Typeface.BOLD);
+                }
             }
             TextView idView = (TextView) v.findViewById(R.id.blog_id);
             if (idView != null) {

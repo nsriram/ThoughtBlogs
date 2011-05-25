@@ -9,14 +9,16 @@
                   android:layout_height="wrap_content">
         <ImageView
                 android:id="@+id/author_icon"
-                android:layout_width="32dip"
-                android:layout_height="32dip"
+                android:layout_width="24dip"
+                android:layout_height="24dip"
                 android:src="@drawable/author_icon"/>
         <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dip"/>
+                android:textSize="14dip"
+                android:paddingLeft="5px"
+                android:typeface="sans"/>
         <TextView
                 android:id="@+id/blog_id"
                 android:layout_width="wrap_content"

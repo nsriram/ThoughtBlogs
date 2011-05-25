@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -60,6 +61,8 @@ public class BlogListActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         TextView blogIdTextView = (TextView) v.findViewById(R.id.blog_id);
+        blogIdTextView.setTypeface(null, Typeface.NORMAL);
+        blogIdTextView.setTextColor(-3355444);
         String blogId = blogIdTextView.getText().toString();
         new BlogData(this).markRead(blogId);
         Intent showContent = new Intent(getApplicationContext(), BlogDetailActivity.class);
