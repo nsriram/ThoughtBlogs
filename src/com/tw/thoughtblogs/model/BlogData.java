@@ -95,19 +95,16 @@ public class BlogData extends SQLiteOpenHelper {
     public Blog loadDescription(String id) {
         SQLiteDatabase db = getReadableDatabase();
         Blog blog = null;
-        Cursor cursor = null;
-        cursor = db.rawQuery("select link,title,description,status from " + EVENTS_TABLE + " where _id=" + id, null);
+        Cursor cursor = db.rawQuery("select link,title,description,status from events where _id=" + id, null);
         if (cursor.getCount() > 0 && cursor.moveToNext()) {
             blog = new Blog(cursor.getString(1), cursor.getString(0), null, cursor.getString(2), cursor.getInt(3));
         }
-        cursor.close();
+        if (!cursor.isClosed())
+            cursor.close();
         return blog;
     }
 
     public void markRead(String id) {
-        SQLiteDatabase db = getReadableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(STATUS, 0);
-        db.update(EVENTS_TABLE, values, "_ID=" + id, null);
+        getReadableDatabase().execSQL("update events set status = 0 where _id=" + id);
     }
 }

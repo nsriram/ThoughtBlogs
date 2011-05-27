@@ -21,6 +21,7 @@ public class BlogAdapter extends ArrayAdapter<Blog> {
         this.blogs = blogs;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;

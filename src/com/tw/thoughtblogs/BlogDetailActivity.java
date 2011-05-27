@@ -11,17 +11,15 @@ import com.tw.thoughtblogs.model.BlogData;
 
 public class BlogDetailActivity extends Activity {
 
-    private final BlogData blogData = new BlogData(this);
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blog_detail);
-
         Intent launchingIntent = getIntent();
         String blogID = launchingIntent.getData().toString();
-
+        BlogData blogData = new BlogData(this);
         Blog blog = blogData.loadDescription(blogID);
+        blogData.close();
         String details = blog.getDescription();
         details = details.replaceAll("&lt;", "<");
         details = details.replaceAll("&gt;", ">");
@@ -35,4 +33,5 @@ public class BlogDetailActivity extends Activity {
         WebView viewer = (WebView) findViewById(R.id.blogDetailView);
         viewer.loadData(details, "text/html", "utf-8");
     }
+
 }
