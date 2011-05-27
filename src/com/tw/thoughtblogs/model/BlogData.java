@@ -83,8 +83,7 @@ public class BlogData extends SQLiteOpenHelper {
     public Date lastParsedDate() {
         SQLiteDatabase db = getReadableDatabase();
         Date date = null;
-        Cursor notes = db.rawQuery("select "
-                + LAST_PARSED_DATE + " from " + PARSE_CHECKPOINT_TABLE, null);
+        Cursor notes = db.rawQuery("select last_parsed_date from checkpoint", null);
         if (notes.getCount() > 0 && notes.moveToNext()) {
             date = new Date(notes.getString(0));
         }
@@ -94,7 +93,7 @@ public class BlogData extends SQLiteOpenHelper {
     }
 
     public Blog loadDescription(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
         Blog blog = null;
         Cursor cursor = null;
         cursor = db.rawQuery("select link,title,description,status from " + EVENTS_TABLE + " where _id=" + id, null);

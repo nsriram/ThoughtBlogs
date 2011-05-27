@@ -19,6 +19,7 @@ import com.tw.thoughtblogs.util.Constants;
 import java.util.List;
 
 public class BlogListActivity extends ListActivity {
+    private final BlogData blogData = new BlogData(this);
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -49,7 +50,7 @@ public class BlogListActivity extends ListActivity {
     }
 
     private void setListContent() {
-        List<Blog> blogs = new BlogData(this).list();
+        List<Blog> blogs = blogData.list();
         this.setListAdapter(new BlogAdapter(this, R.layout.list_item, blogs));
     }
 
@@ -64,7 +65,7 @@ public class BlogListActivity extends ListActivity {
         blogIdTextView.setTypeface(null, Typeface.NORMAL);
         blogIdTextView.setTextColor(-3355444);
         String blogId = blogIdTextView.getText().toString();
-        new BlogData(this).markRead(blogId);
+        blogData.markRead(blogId);
         Intent showContent = new Intent(getApplicationContext(), BlogDetailActivity.class);
         showContent.setData(Uri.parse(blogId));
         startActivity(showContent);

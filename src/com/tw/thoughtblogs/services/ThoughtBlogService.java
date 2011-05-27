@@ -22,6 +22,7 @@ import static com.tw.thoughtblogs.util.Constants.*;
 
 public class ThoughtBlogService extends Service {
     private Handler mHandler = new Handler();
+    private final BlogData blogData = new BlogData(this);
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -42,7 +43,7 @@ public class ThoughtBlogService extends Service {
 
     private Runnable contentFetchTask = new Runnable() {
         public void run() {
-            Date lastParsedDate = new BlogData(getContext()).lastParsedDate();
+            Date lastParsedDate = blogData.lastParsedDate();
             List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
             storeBlogs(blogs);
             mHandler.postDelayed(contentFetchTask, ONE_MINUTE);
@@ -51,7 +52,7 @@ public class ThoughtBlogService extends Service {
 
     private void storeBlogs(List<Blog> blogs) {
         if (blogs.size() > 0) {
-            new BlogData(this).store(blogs);
+            blogData.store(blogs);
             Intent intent = new Intent(REFRESH_INTENT);
             sendBroadcast(intent);
             notifyStatusBar(blogs.size());
@@ -74,9 +75,5 @@ public class ThoughtBlogService extends Service {
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
         mNotificationManager.notify(1, notification);
-    }
-
-    private ThoughtBlogService getContext() {
-        return this;
     }
 }
