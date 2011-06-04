@@ -20,15 +20,6 @@ import java.util.List;
 
 public class BlogListActivity extends ListActivity {
 
-    private BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Constants.REFRESH_INTENT.equals(intent.getAction())) {
-                setListContent();
-            }
-        }
-    };
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +29,16 @@ public class BlogListActivity extends ListActivity {
         handleIntent(getIntent());
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constants.REFRESH_INTENT);
-        this.registerReceiver(this.receiver, filter);
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (Constants.REFRESH_INTENT.equals(intent.getAction())) {
+                    setListContent();
+                }
+            }
+        };
+
+        this.registerReceiver(receiver, filter);
     }
 
     private void handleIntent(Intent intent) {
@@ -48,14 +48,14 @@ public class BlogListActivity extends ListActivity {
     }
 
     private void setListContent() {
-        BlogData blogData = new BlogData(this);
+        BlogData blogData = new BlogData(context());
         List<Blog> blogs = blogData.list();
         blogData.close();
-        this.setListAdapter(new BlogAdapter(this, R.layout.list_item, blogs));
+        this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
     }
 
     private void startFeedContentService() {
-        Intent intent = new Intent(BlogListActivity.this, ThoughtBlogService.class);
+        Intent intent = new Intent(context(), ThoughtBlogService.class);
         startService(intent);
     }
 
@@ -64,11 +64,15 @@ public class BlogListActivity extends ListActivity {
         TextView blogIdTextView = (TextView) v.findViewById(R.id.blog_id);
         String blogId = blogIdTextView.getText().toString();
         Log.v("BlogListActivity", "Marking Read - ID=" + blogId);
-        BlogData blogData = new BlogData(this);
+        BlogData blogData = new BlogData(context());
         blogData.markRead(blogId);
         blogData.close();
-        Intent showContent = new Intent(getApplicationContext(), BlogDetailActivity.class);
+        Intent showContent = new Intent(context(), BlogDetailActivity.class);
         showContent.setData(Uri.parse(blogId));
         startActivity(showContent);
+    }
+
+    private Context context() {
+        return this.getApplicationContext();
     }
 }

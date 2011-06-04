@@ -21,7 +21,7 @@ import java.util.List;
 import static com.tw.thoughtblogs.util.Constants.*;
 
 public class ThoughtBlogService extends Service {
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -37,7 +37,7 @@ public class ThoughtBlogService extends Service {
     public void onDestroy() {
         super.onDestroy();
         mHandler.removeCallbacks(contentFetchTask);
-        Toast.makeText(this, "Service onDestroy() ", Toast.LENGTH_LONG).show();
+        Toast.makeText(this.getContext(), "Service onDestroy() ", Toast.LENGTH_LONG).show();
     }
 
     private Runnable contentFetchTask = new Runnable() {
@@ -47,6 +47,7 @@ public class ThoughtBlogService extends Service {
             blogData.close();
             List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
             storeBlogs(blogs);
+            mHandler.removeCallbacks(contentFetchTask);
             mHandler.postDelayed(contentFetchTask, ONE_MINUTE);
         }
     };

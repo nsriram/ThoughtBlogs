@@ -6,13 +6,13 @@
         >
     <TextView
             android:id="@+id/detail_view_title"
-            style="@style/detailHeader"
-/>
+            style="@style/detailHeader"/>
     <WebView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/blogDetailView"
+            android:alwaysDrawnWithCache="false"
             android:fitsSystemWindows="true">
     </WebView>
 </LinearLayout>

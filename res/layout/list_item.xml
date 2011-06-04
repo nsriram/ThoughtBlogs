@@ -16,9 +16,9 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dip"
+                android:textSize="13dip"
                 android:paddingLeft="5px"
-                android:typeface="sans"/>
+                android:typeface="serif"/>
         <TextView
                 android:id="@+id/blog_id"
                 android:layout_width="wrap_content"
