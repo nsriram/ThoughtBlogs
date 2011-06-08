@@ -30,14 +30,14 @@ public class ThoughtBlogService extends Service {
 
     @Override
     public void onCreate() {
-        mHandler.postDelayed(contentFetchTask, ONE_MINUTE);
+        mHandler.postDelayed(contentFetchTask, 60000);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mHandler.removeCallbacks(contentFetchTask);
-        Toast.makeText(this.getContext(), "Service onDestroy() ", Toast.LENGTH_LONG).show();
+        Toast.makeText(this.getContext(), "ThoughtBlogs Service Stopped.", Toast.LENGTH_LONG).show();
     }
 
     private Runnable contentFetchTask = new Runnable() {
@@ -48,7 +48,7 @@ public class ThoughtBlogService extends Service {
             List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
             storeBlogs(blogs);
             mHandler.removeCallbacks(contentFetchTask);
-            mHandler.postDelayed(contentFetchTask, ONE_MINUTE);
+            mHandler.postDelayed(contentFetchTask, 3600000);
         }
     };
 
