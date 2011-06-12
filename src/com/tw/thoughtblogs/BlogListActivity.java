@@ -63,7 +63,6 @@ public class BlogListActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         TextView blogIdTextView = (TextView) v.findViewById(R.id.blog_id);
         String blogId = blogIdTextView.getText().toString();
-        Log.v("BlogListActivity", "Marking Read - ID=" + blogId);
         BlogData blogData = new BlogData(context());
         blogData.markRead(blogId);
         blogData.close();

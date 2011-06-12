@@ -1,6 +1,8 @@
 package com.tw.thoughtblogs;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +23,6 @@ public class BlogAdapter extends ArrayAdapter<Blog> {
         this.blogs = blogs;
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
@@ -39,16 +40,21 @@ public class BlogAdapter extends ArrayAdapter<Blog> {
                 if (blog.getStatus() == 1) {
                     titleView.setTextColor(-1);
                     titleView.setTypeface(Typeface.SERIF, Typeface.BOLD);
+                } else {
+                    titleView.setTypeface(Typeface.SERIF, Typeface.NORMAL);
+                    titleView.setTextColor(Color.GRAY);
                 }
             }
             TextView idView = (TextView) v.findViewById(R.id.blog_id);
-            if (idView != null) {
-                idView.setText("" + blog.getId());
-                idView.setVisibility(View.GONE);
-            }
+            hideID(blog, idView);
         }
         return v;
     }
 
-
+    private void hideID(Blog blog, TextView idView) {
+        if (idView != null) {
+            idView.setText("" + blog.getId());
+            idView.setVisibility(View.GONE);
+        }
+    }
 }
