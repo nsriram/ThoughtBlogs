@@ -1,57 +1,59 @@
 package com.tw.thoughtblogs;
 
 import android.app.ListActivity;
-import android.content.BroadcastReceiver;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.tw.thoughtblogs.model.Blog;
 import com.tw.thoughtblogs.model.BlogData;
 import com.tw.thoughtblogs.services.ThoughtBlogService;
-import com.tw.thoughtblogs.util.Constants;
 
+import java.util.Date;
 import java.util.List;
 
+import static com.tw.thoughtblogs.util.Constants.FEED_URL;
+
 public class BlogListActivity extends ListActivity {
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        loadBlogs();
         startFeedContentService();
-        setListContent();
-        handleIntent(getIntent());
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Constants.REFRESH_INTENT);
-        BroadcastReceiver receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (Constants.REFRESH_INTENT.equals(intent.getAction())) {
-                    setListContent();
-                }
-            }
-        };
-
-        this.registerReceiver(receiver, filter);
     }
 
-    private void handleIntent(Intent intent) {
-        if (Constants.REFRESH_INTENT.equals(intent.getAction())) {
-            setListContent();
-        }
-    }
-
-    private void setListContent() {
+    private void loadBlogs() {
         BlogData blogData = new BlogData(context());
         List<Blog> blogs = blogData.list();
         blogData.close();
+        if (blogs.isEmpty()) {
+            initProgressDialog();
+            new BlogDownloadTask().execute("");
+        } else {
+            setListContent(blogs);
+        }
+    }
+
+    private void setListContent(List<Blog> blogs) {
+        dismissProgressDialog();
         this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
+    }
+
+    private void initProgressDialog() {
+        progressDialog = ProgressDialog.show(BlogListActivity.this, "Downloading ... ", "Fetching Latest Entries", true, true);
+    }
+
+    private void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
     private void startFeedContentService() {
@@ -74,4 +76,30 @@ public class BlogListActivity extends ListActivity {
     private Context context() {
         return this.getApplicationContext();
     }
+
+    private class BlogDownloadTask extends AsyncTask<String, Void, List<Blog>> {
+
+        protected List<Blog> doInBackground(String... args) {
+
+            BlogData blogData = new BlogData(context());
+            Date lastParsedDate = blogData.lastParsedDate();
+            blogData.close();
+
+            List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
+            blogData = new BlogData(context());
+            blogData.store(blogs);
+            blogData.close();
+
+            blogData = new BlogData(context());
+            blogs = blogData.list();
+            blogData.close();
+
+            return blogs;
+        }
+
+        protected void onPostExecute(List<Blog> blogs) {
+            BlogListActivity.this.setListContent(blogs);
+        }
+    }
+
 }

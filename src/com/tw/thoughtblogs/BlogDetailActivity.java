@@ -34,4 +34,9 @@ public class BlogDetailActivity extends Activity {
         viewer.loadData(details, "text/html", "utf-8");
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent blogListActivity = new Intent(getApplicationContext(), BlogListActivity.class);
+        startActivity(blogListActivity);
+    }
 }

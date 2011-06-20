@@ -18,7 +18,7 @@ import com.tw.thoughtblogs.model.BlogData;
 import java.util.Date;
 import java.util.List;
 
-import static com.tw.thoughtblogs.util.Constants.*;
+import static com.tw.thoughtblogs.util.Constants.FEED_URL;
 
 public class ThoughtBlogService extends Service {
     private final Handler mHandler = new Handler();
@@ -30,7 +30,7 @@ public class ThoughtBlogService extends Service {
 
     @Override
     public void onCreate() {
-        mHandler.postDelayed(contentFetchTask, 60000);
+        mHandler.postDelayed(contentFetchTask, 300000);
     }
 
     @Override
@@ -42,6 +42,7 @@ public class ThoughtBlogService extends Service {
 
     private Runnable contentFetchTask = new Runnable() {
         public void run() {
+            Toast.makeText(getContext(), "Loading ThoughtBlogs", Toast.LENGTH_SHORT).show();
             BlogData blogData = new BlogData(getContext());
             Date lastParsedDate = blogData.lastParsedDate();
             blogData.close();
@@ -61,8 +62,6 @@ public class ThoughtBlogService extends Service {
             BlogData blogData = new BlogData(this);
             blogData.store(blogs);
             blogData.close();
-            Intent intent = new Intent(REFRESH_INTENT);
-            sendBroadcast(intent);
             notifyStatusBar(blogs.size());
         }
     }
