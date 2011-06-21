@@ -3,7 +3,7 @@ package com.tw.thoughtblogs.util;
 import com.tw.thoughtblogs.R;
 
 public class Constants {
-    public static final String FEED_URL = "http://feeds.feedburner.com/PlanetTw";
+    public static final String FEED_URL = "http://www.thoughtworks.com/blogs/rss/current";
     public static final String UTF_8 = "UTF-8";
     public static final String ITEM = "item";
     public static final String PUBDATE = "pubDate";

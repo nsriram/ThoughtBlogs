@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caf9a82b-4fe9-464e-b53e-179acf9bcf75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/apache_commons.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-hdpi/notification_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-ldpi/notification_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-mdpi/notification_icon.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThoughtBlogs.iml" afterPath="$PROJECT_DIR$/ThoughtBlogs.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/tw/thoughtblogs/R.java" afterPath="$PROJECT_DIR$/gen/com/tw/thoughtblogs/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ThoughtBlogService.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ThoughtBlogService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java" />
     </list>
     <ignored path="ThoughtBlogs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,28 +68,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FeedParser.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java">
+      <file leaf-file-name="Constants.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="43" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.66784453">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlogDetailActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="44" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlogListActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogListActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="24" selection-start="3148" selection-end="3148" vertical-scroll-proportion="0.0">
+            <state line="5" column="88" selection-start="179" selection-end="179" vertical-scroll-proportion="0.2777778">
               <folding />
             </state>
           </provider>
@@ -129,10 +103,10 @@
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogAdapter.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/drawable/blogsbackground.xml" />
-        <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/services/ThoughtBlogService.java" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogDetailActivity.java" />
         <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java" />
+        <option value="$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java" />
       </list>
     </option>
   </component>
@@ -308,7 +282,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="90" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="99" />
     <property name="project.structure.proportion" value="0.15" />
@@ -613,7 +587,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967507" sideWeight="0.6630934" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32981315" sideWeight="0.6523737" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32981315" sideWeight="0.4777948" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34762633" sideWeight="0.0" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4532925" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20227458" sideWeight="0.4895449" order="4" side_tool="false" content_ui="tabs" />
@@ -638,7 +612,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. Moved the back pressed logic from detailactivity to list.&#10;2. Pressing back from list will exit the application." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. Escape/unEscape fix after thoughtblogs source feed changed." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -670,6 +644,7 @@
     <MESSAGE value="Sriram : &#10;1. Background Styling" />
     <MESSAGE value="Sriram : &#10;1. Fix to the read/unread scroller issue.&#10;2. Icon modified to be rounded." />
     <MESSAGE value="Sriram : &#10;1. Moved the back pressed logic from detailactivity to list.&#10;2. Pressing back from list will exit the application." />
+    <MESSAGE value="Sriram : &#10;1. Escape/unEscape fix after thoughtblogs source feed changed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -707,13 +682,6 @@
     <entry file="file://$PROJECT_DIR$/res/drawable/blogsbackground.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="30" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="94" selection-start="1291" selection-end="1291" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -762,9 +730,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogListActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="24" selection-start="3148" selection-end="3148" vertical-scroll-proportion="0.0">
+        <state line="45" column="33" selection-start="1800" selection-end="1800" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -776,9 +744,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/FeedParser.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/BlogListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="43" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.66784453">
+        <state line="40" column="8" selection-start="1045" selection-end="1045" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/util/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="88" selection-start="179" selection-end="179" vertical-scroll-proportion="0.2777778">
           <folding />
         </state>
       </provider>
@@ -800,7 +775,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Android</last-edited>
+          <last-edited>Android (ThoughtBlogs)|Android</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -841,6 +816,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -848,6 +824,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>apache-commons</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
