@@ -33,10 +33,4 @@ public class BlogDetailActivity extends Activity {
         WebView viewer = (WebView) findViewById(R.id.blogDetailView);
         viewer.loadData(details, "text/html", "utf-8");
     }
-
-    @Override
-    public void onBackPressed() {
-        Intent blogListActivity = new Intent(getApplicationContext(), BlogListActivity.class);
-        startActivity(blogListActivity);
-    }
 }

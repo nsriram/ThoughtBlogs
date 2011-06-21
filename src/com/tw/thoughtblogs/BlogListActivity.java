@@ -30,6 +30,18 @@ public class BlogListActivity extends ListActivity {
         startFeedContentService();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadBlogs();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+
     private void loadBlogs() {
         BlogData blogData = new BlogData(context());
         List<Blog> blogs = blogData.list();
