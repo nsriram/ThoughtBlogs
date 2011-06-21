@@ -26,7 +26,7 @@ public class FeedParser {
         int eventType = xpp.getEventType();
         boolean stopParsing = false;
         DateFormatter formatter = new DateFormatter(EEE_DD_MMM_YYYY_HH_MM_SS_ZZZ);
-        while (eventType != END_DOCUMENT && !stopParsing && entries.size() < 25) {
+        while (eventType != END_DOCUMENT && !stopParsing && entries.size() < 40) {
             if (eventType == START_TAG && xpp.getName() != null && xpp.getName().equals(ITEM)) {
                 Blog blog = parseItem(xpp, eventType);
                 if (formatter.isParsed(blog.getPubDate(), lastParsedDate)) {
