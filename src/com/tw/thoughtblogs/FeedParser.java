@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.tw.thoughtblogs.util.Constants.*;
+import static org.apache.commons.lang.StringEscapeUtils.unescapeHtml;
 import static org.xmlpull.v1.XmlPullParser.*;
 
 public class FeedParser {
@@ -65,6 +66,6 @@ public class FeedParser {
             }
             eventType = xpp.next();
         }
-        return new Blog(title, origLink, pubDate, description, 1);
+        return new Blog(unescapeHtml(title), origLink, pubDate, unescapeHtml(description), 1);
     }
 }

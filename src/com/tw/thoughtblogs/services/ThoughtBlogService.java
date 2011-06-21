@@ -68,7 +68,7 @@ public class ThoughtBlogService extends Service {
 
     private void notifyStatusBar(int size) {
         String ns = Context.NOTIFICATION_SERVICE;
-        int icon = R.drawable.notification_icon;
+        int icon = R.drawable.icon;
         CharSequence tickerText = " New ThoughtBlogs";
         long when = System.currentTimeMillis();
         Notification notification = new Notification(icon, tickerText, when);
