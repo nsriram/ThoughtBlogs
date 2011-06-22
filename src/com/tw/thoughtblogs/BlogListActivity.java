@@ -24,11 +24,14 @@ import static com.tw.thoughtblogs.util.Constants.FEED_URL;
 public class BlogListActivity extends ListActivity {
     private ProgressDialog progressDialog;
 
+    private Context context() {
+        return this.getApplicationContext();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Log.v("onCreate", "onCreate");
         loadBlogs();
         startFeedContentService();
     }
@@ -36,9 +39,7 @@ public class BlogListActivity extends ListActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.v("onrestart", "onrestart");
-        List<Blog> blogs = dbFetch();
-        this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
+        setAdapter(dbFetch());
     }
 
     @Override
@@ -54,16 +55,11 @@ public class BlogListActivity extends ListActivity {
 
     private void setListContent(List<Blog> blogs) {
         dismissProgressDialog();
+        setAdapter(blogs);
+    }
+
+    private void setAdapter(List<Blog> blogs) {
         this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
-    }
-
-    private void initProgressDialog() {
-        progressDialog = ProgressDialog.show(BlogListActivity.this, "Downloading ... ", "Fetching Latest Entries", true, true);
-    }
-
-    private void dismissProgressDialog() {
-        if (progressDialog != null && progressDialog.isShowing())
-            progressDialog.dismiss();
     }
 
     private void startFeedContentService() {
@@ -83,15 +79,20 @@ public class BlogListActivity extends ListActivity {
         startActivity(showContent);
     }
 
-    private Context context() {
-        return this.getApplicationContext();
-    }
-
     private List<Blog> dbFetch() {
         BlogData blogData = new BlogData(context());
         List<Blog> blogs = blogData.list();
         blogData.close();
         return blogs;
+    }
+
+    private void initProgressDialog() {
+        progressDialog = ProgressDialog.show(BlogListActivity.this, "Downloading ... ", "Fetching Latest Entries", true, true);
+    }
+
+    private void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
     private class BlogDownloadTask extends AsyncTask<String, Void, List<Blog>> {
