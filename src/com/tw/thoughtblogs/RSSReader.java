@@ -32,7 +32,7 @@ public class RSSReader {
             response = httpClient.execute(get);
             blogs = feedParser.parse(response.getEntity().getContent(), lastParsedDate);
         } catch (Exception e) {
-            e.printStackTrace();
+            return new ArrayList<Blog>();
         }
         Collections.reverse(blogs);
         return blogs;
