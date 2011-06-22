@@ -33,7 +33,8 @@ public class BlogListActivity extends ListActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        loadBlogs();
+        List<Blog> blogs = fetch();
+        this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
     }
 
     @Override
@@ -43,15 +44,8 @@ public class BlogListActivity extends ListActivity {
     }
 
     private void loadBlogs() {
-        BlogData blogData = new BlogData(context());
-        List<Blog> blogs = blogData.list();
-        blogData.close();
-        if (blogs.isEmpty()) {
-            initProgressDialog();
-            new BlogDownloadTask().execute("");
-        } else {
-            setListContent(blogs);
-        }
+        initProgressDialog();
+        new BlogDownloadTask().execute("");
     }
 
     private void setListContent(List<Blog> blogs) {
@@ -87,6 +81,13 @@ public class BlogListActivity extends ListActivity {
 
     private Context context() {
         return this.getApplicationContext();
+    }
+
+    private List<Blog> fetch() {
+        BlogData blogData = new BlogData(context());
+        List<Blog> blogs = blogData.list();
+        blogData.close();
+        return blogs;
     }
 
     private class BlogDownloadTask extends AsyncTask<String, Void, List<Blog>> {
