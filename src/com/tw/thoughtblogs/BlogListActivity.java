@@ -4,9 +4,11 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ public class BlogListActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        Log.v("onCreate", "onCreate");
         loadBlogs();
         startFeedContentService();
     }
@@ -33,7 +36,8 @@ public class BlogListActivity extends ListActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        List<Blog> blogs = fetch();
+        Log.v("onrestart", "onrestart");
+        List<Blog> blogs = dbFetch();
         this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
     }
 
@@ -83,7 +87,7 @@ public class BlogListActivity extends ListActivity {
         return this.getApplicationContext();
     }
 
-    private List<Blog> fetch() {
+    private List<Blog> dbFetch() {
         BlogData blogData = new BlogData(context());
         List<Blog> blogs = blogData.list();
         blogData.close();
@@ -113,6 +117,11 @@ public class BlogListActivity extends ListActivity {
         protected void onPostExecute(List<Blog> blogs) {
             BlogListActivity.this.setListContent(blogs);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
 }
