@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caf9a82b-4fe9-464e-b53e-179acf9bcf75" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/commons-lang-2.5.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tw/thoughtblogs/RSSReader.java" afterPath="$PROJECT_DIR$/src/com/tw/thoughtblogs/RSSReader.java" />
     </list>
     <ignored path="ThoughtBlogs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +89,7 @@
       <file leaf-file-name="RSSReader.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/RSSReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="81" selection-start="606" selection-end="606" vertical-scroll-proportion="0.58303887">
+            <state line="32" column="69" selection-start="1048" selection-end="1048" vertical-scroll-proportion="1.1130742">
               <folding />
             </state>
           </provider>
@@ -585,7 +585,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. onStart invariably fetches the latest entries.&#10;2. onRestart reads from DB alone." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sriram : &#10;1. Swallowing exception." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -620,6 +620,7 @@
     <MESSAGE value="Sriram : &#10;1. Escape/unEscape fix after thoughtblogs source feed changed." />
     <MESSAGE value="Sriram : &#10;1. Changed RSS Feed Source to thoughtworks.com" />
     <MESSAGE value="Sriram : &#10;1. onStart invariably fetches the latest entries.&#10;2. onRestart reads from DB alone." />
+    <MESSAGE value="Sriram : &#10;1. Swallowing exception." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -726,7 +727,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tw/thoughtblogs/RSSReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="81" selection-start="606" selection-end="606" vertical-scroll-proportion="0.58303887">
+        <state line="32" column="69" selection-start="1048" selection-end="1048" vertical-scroll-proportion="1.1130742">
           <folding />
         </state>
       </provider>
