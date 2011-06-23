@@ -18,4 +18,5 @@
         </activity>
         <service android:name=".services.ThoughtBlogService"/>
     </application>
+    <uses-sdk android:minSdkVersion="8"/>
 </manifest>
