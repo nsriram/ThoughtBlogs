@@ -10,7 +10,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static com.tw.thoughtblogs.util.Constants.*;

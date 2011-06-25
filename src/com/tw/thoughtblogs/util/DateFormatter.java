@@ -15,6 +15,6 @@ public class DateFormatter {
     public boolean isParsed(String toParseDate, String lastParsed) throws ParseException {
         Date date = format.parse(toParseDate);
         Date lastParsedDate = format.parse(lastParsed);
-        return lastParsedDate.after(date);
+        return lastParsedDate.equals(date) || lastParsedDate.after(date);
     }
 }

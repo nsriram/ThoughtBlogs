@@ -32,28 +32,26 @@ public class BlogData extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE " + PARSE_CHECKPOINT_TABLE + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LAST_PARSED_DATE + " TEXT NOT NULL);");
-        String pastDateStr = "Sat, 01 Jan 2011 07:00:00 -0700";
-        database.insert(PARSE_CHECKPOINT_TABLE, null, initTimeStamp(pastDateStr));
+        database.insert(PARSE_CHECKPOINT_TABLE, null, initTimeStamp());
     }
 
-    private ContentValues initTimeStamp(String date) {
+    private ContentValues initTimeStamp() {
         ContentValues values = new ContentValues();
-        Log.v("BlogData", "Last Parsed " + date);
-        values.put(LAST_PARSED_DATE, date);
+        values.put(LAST_PARSED_DATE, INITIAL_TIME_STAMP);
         return values;
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
+        db.execSQL("DROP TABLE IF EXISTS " + PARSE_CHECKPOINT_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + EVENTS_TABLE);
         onCreate(db);
     }
 
     public void store(List<Blog> blogs) {
-        if (blogs.isEmpty())
+        if (blogs == null || blogs.isEmpty())
             return;
         SQLiteDatabase db = getWritableDatabase();
-        Date now = new GregorianCalendar().getTime();
         for (Blog blog : blogs) {
             ContentValues values = new ContentValues();
             values.put(LINK, blog.getOrigLink());
@@ -64,10 +62,10 @@ public class BlogData extends SQLiteOpenHelper {
             db.insert(EVENTS_TABLE, null, values);
         }
         Log.v("BlogData ", "Blog Entries Stored " + blogs.size());
+        String lastParsedDate = blogs.get(blogs.size() - 1).getPubDate();
         ContentValues values = new ContentValues();
-        DateFormat format = new SimpleDateFormat(PST_FORMAT);
-        String lastParsedDate = format.format(now);
         values.put(LAST_PARSED_DATE, lastParsedDate);
+        Log.v("lastParsedDate ", "lastParsedDate=" + lastParsedDate);
         db.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
     }
 

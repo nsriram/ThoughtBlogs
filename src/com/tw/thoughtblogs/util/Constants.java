@@ -1,7 +1,7 @@
 package com.tw.thoughtblogs.util;
 
 public class Constants {
-    public static final String FEED_URL = "http://10.0.2.2:8080/feeds.xml";
+    public static final String FEED_URL = "http://www.thoughtworks.com/blogs/rss/current";
     public static final String UTF_8 = "UTF-8";
     public static final String ITEM = "item";
     public static final String PUBDATE = "pubDate";
@@ -18,7 +18,8 @@ public class Constants {
     public static final String PARSE_CHECKPOINT_TABLE = "checkpoint";
     public static final String LAST_PARSED_DATE = "last_parsed_date";
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String PST_FORMAT = "EEE, dd MMM yyyy HH:mm:ss Z";
     public static final String GMT_FORMAT = "EEE, dd MMM yyyy HH:mm:ss ZZZ";
+    public static final String INITIAL_TIME_STAMP = "Sat, 23 Jun 2011 00:00:00 -0700";
 }
