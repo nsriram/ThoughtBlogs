@@ -1,16 +1,11 @@
 package com.tw.thoughtblogs.util;
 
-import com.tw.thoughtblogs.R;
-
 public class Constants {
-    public static final String FEED_URL = "http://www.thoughtworks.com/blogs/rss/current";
+    public static final String FEED_URL = "http://10.0.2.2:8080/feeds.xml";
     public static final String UTF_8 = "UTF-8";
     public static final String ITEM = "item";
     public static final String PUBDATE = "pubDate";
-    public static final int ONE_MINUTE = 60000;
-    public static final String REFRESH_INTENT = "com.tw.thoughtblogs.REFRESH";
 
-    //Database Constants
     public static final String DATABASE_NAME = "thoughtblogs.db";
     public static final String EVENTS_TABLE = "events";
     public static final String _ID = "_id";
@@ -24,7 +19,6 @@ public class Constants {
     public static final String LAST_PARSED_DATE = "last_parsed_date";
 
     public static final int DATABASE_VERSION = 1;
-    public static final String[] FROM = {TITLE, _ID};
-    public static final int[] TO = {R.id.title, R.id.blog_id};
-    public static final String EEE_DD_MMM_YYYY_HH_MM_SS_ZZZ = "EEE, dd MMM yyyy HH:mm:ss zzz";
+    public static final String PST_FORMAT = "EEE, dd MMM yyyy HH:mm:ss Z";
+    public static final String GMT_FORMAT = "EEE, dd MMM yyyy HH:mm:ss ZZZ";
 }

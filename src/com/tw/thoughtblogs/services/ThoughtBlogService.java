@@ -15,7 +15,6 @@ import com.tw.thoughtblogs.RSSReader;
 import com.tw.thoughtblogs.model.Blog;
 import com.tw.thoughtblogs.model.BlogData;
 
-import java.util.Date;
 import java.util.List;
 
 import static com.tw.thoughtblogs.util.Constants.FEED_URL;
@@ -44,7 +43,7 @@ public class ThoughtBlogService extends Service {
         public void run() {
             Toast.makeText(getContext(), "Loading ThoughtBlogs", Toast.LENGTH_SHORT).show();
             BlogData blogData = new BlogData(getContext());
-            Date lastParsedDate = blogData.lastParsedDate();
+            String lastParsedDate = blogData.lastParsedDate();
             blogData.close();
             List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
             storeBlogs(blogs);

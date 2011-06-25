@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static com.tw.thoughtblogs.util.Constants.*;
 
@@ -32,15 +32,14 @@ public class BlogData extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE " + PARSE_CHECKPOINT_TABLE + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LAST_PARSED_DATE + " TEXT NOT NULL);");
-        database.insert(PARSE_CHECKPOINT_TABLE, null,
-                initTimeStamp(new GregorianCalendar(2011, 1, 1).getTime()));
+        String pastDateStr = "Sat, 01 Jan 2011 07:00:00 -0700";
+        database.insert(PARSE_CHECKPOINT_TABLE, null, initTimeStamp(pastDateStr));
     }
 
-    private ContentValues initTimeStamp(Date date) {
+    private ContentValues initTimeStamp(String date) {
         ContentValues values = new ContentValues();
-        String past = date.toString();
-        Log.v("BlogData", "Last Parsed " + past);
-        values.put(LAST_PARSED_DATE, past);
+        Log.v("BlogData", "Last Parsed " + date);
+        values.put(LAST_PARSED_DATE, date);
         return values;
     }
 
@@ -51,6 +50,8 @@ public class BlogData extends SQLiteOpenHelper {
     }
 
     public void store(List<Blog> blogs) {
+        if (blogs.isEmpty())
+            return;
         SQLiteDatabase db = getWritableDatabase();
         Date now = new GregorianCalendar().getTime();
         for (Blog blog : blogs) {
@@ -64,7 +65,9 @@ public class BlogData extends SQLiteOpenHelper {
         }
         Log.v("BlogData ", "Blog Entries Stored " + blogs.size());
         ContentValues values = new ContentValues();
-        values.put(LAST_PARSED_DATE, now.toString());
+        DateFormat format = new SimpleDateFormat(PST_FORMAT);
+        String lastParsedDate = format.format(now);
+        values.put(LAST_PARSED_DATE, lastParsedDate);
         db.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
     }
 
@@ -80,16 +83,16 @@ public class BlogData extends SQLiteOpenHelper {
         return blogs;
     }
 
-    public Date lastParsedDate() {
+    public String lastParsedDate() {
         SQLiteDatabase db = getReadableDatabase();
-        Date date = null;
         Cursor notes = db.rawQuery("select last_parsed_date from checkpoint", null);
+        String lastParsedDate = null;
         if (notes.getCount() > 0 && notes.moveToNext()) {
-            date = new Date(notes.getString(0));
+            lastParsedDate = notes.getString(0);
+            Log.v("BlogData", "" + lastParsedDate);
         }
         notes.close();
-        Log.v("BlogData", "LastParsedDate" + date);
-        return date;
+        return lastParsedDate;
     }
 
     public Blog loadDescription(String id) {

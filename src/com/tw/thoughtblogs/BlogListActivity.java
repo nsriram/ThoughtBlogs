@@ -31,6 +31,7 @@ public class BlogListActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v("onCreate", "onCreate");
         setContentView(R.layout.main);
         loadBlogs();
         startFeedContentService();
@@ -39,6 +40,7 @@ public class BlogListActivity extends ListActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        Log.v("onRestart", "onRestart");
         setAdapter(dbFetch());
     }
 
@@ -100,9 +102,9 @@ public class BlogListActivity extends ListActivity {
         protected List<Blog> doInBackground(String... args) {
 
             BlogData blogData = new BlogData(context());
-            Date lastParsedDate = blogData.lastParsedDate();
+            String lastParsedDate = blogData.lastParsedDate();
             blogData.close();
-
+            Log.v("BlogDownloadTask", "RSS Fetch");
             List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
             blogData = new BlogData(context());
             blogData.store(blogs);

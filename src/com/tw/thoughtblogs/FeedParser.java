@@ -1,5 +1,6 @@
 package com.tw.thoughtblogs;
 
+import android.util.Log;
 import com.tw.thoughtblogs.model.Blog;
 import com.tw.thoughtblogs.util.DateFormatter;
 import org.xmlpull.v1.XmlPullParser;
@@ -18,7 +19,7 @@ import static org.xmlpull.v1.XmlPullParser.*;
 
 public class FeedParser {
 
-    public List<Blog> parse(InputStream content, Date lastParsedDate) throws Exception {
+    public List<Blog> parse(InputStream content, String lastParsedDate) throws Exception {
         List<Blog> entries = new ArrayList<Blog>();
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
@@ -26,10 +27,11 @@ public class FeedParser {
         xpp.setInput(content, UTF_8);
         int eventType = xpp.getEventType();
         boolean stopParsing = false;
-        DateFormatter formatter = new DateFormatter(EEE_DD_MMM_YYYY_HH_MM_SS_ZZZ);
+        DateFormatter formatter = new DateFormatter(PST_FORMAT);
         while (eventType != END_DOCUMENT && !stopParsing && entries.size() < 40) {
             if (eventType == START_TAG && xpp.getName() != null && xpp.getName().equals(ITEM)) {
                 Blog blog = parseItem(xpp, eventType);
+                Log.v("FeedParser:parse", blog.getPubDate() + "," + lastParsedDate);
                 if (formatter.isParsed(blog.getPubDate(), lastParsedDate)) {
                     stopParsing = true;
                 } else {

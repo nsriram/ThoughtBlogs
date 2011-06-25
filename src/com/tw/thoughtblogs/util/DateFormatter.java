@@ -12,8 +12,9 @@ public class DateFormatter {
         this.format = new SimpleDateFormat(formatString);
     }
 
-    public boolean isParsed(String toParseDate, Date lastParsedDate) throws ParseException {
+    public boolean isParsed(String toParseDate, String lastParsed) throws ParseException {
         Date date = format.parse(toParseDate);
+        Date lastParsedDate = format.parse(lastParsed);
         return lastParsedDate.after(date);
     }
 }
