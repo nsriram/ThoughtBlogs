@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
 import com.tw.thoughtblogs.BlogListActivity;
 import com.tw.thoughtblogs.R;
 import com.tw.thoughtblogs.RSSReader;

@@ -16,7 +16,12 @@
         <activity android:name="BlogDetailActivity"
                   android:label="@string/app_name">
         </activity>
-        <service android:name=".services.ThoughtBlogService"/>
+        <service android:name=".services.ThoughtBlogService"
+                 android:process=":remote">
+            <intent-filter>
+                <action android:name="com.tw.thoughtblogs.services.ThoughtBlogService"/>
+            </intent-filter>
+        </service>
     </application>
     <uses-sdk android:minSdkVersion="8"/>
 </manifest>
