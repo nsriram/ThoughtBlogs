@@ -61,11 +61,9 @@ public class BlogData extends SQLiteOpenHelper {
             values.put(STATUS, blog.getStatus());
             db.insert(EVENTS_TABLE, null, values);
         }
-        Log.v("BlogData ", "Blog Entries Stored " + blogs.size());
         String lastParsedDate = blogs.get(blogs.size() - 1).getPubDate();
         ContentValues values = new ContentValues();
         values.put(LAST_PARSED_DATE, lastParsedDate);
-        Log.v("lastParsedDate ", "lastParsedDate=" + lastParsedDate);
         db.update(PARSE_CHECKPOINT_TABLE, values, "_ID=1", null);
     }
 
@@ -107,5 +105,9 @@ public class BlogData extends SQLiteOpenHelper {
 
     public void markRead(String id) {
         getReadableDatabase().execSQL("update events set status = 0 where _id=" + id);
+    }
+
+    public void delete(String id) {
+        getReadableDatabase().execSQL("delete from events where _id=" + id);
     }
 }

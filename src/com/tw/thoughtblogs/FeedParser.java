@@ -30,7 +30,6 @@ public class FeedParser {
         while (eventType != END_DOCUMENT && !stopParsing && entries.size() < 40) {
             if (eventType == START_TAG && xpp.getName() != null && xpp.getName().equals(ITEM)) {
                 Blog blog = parseItem(xpp, eventType);
-                Log.v("FeedParser:parse", blog.getPubDate() + "," + lastParsedDate);
                 if (formatter.isParsed(blog.getPubDate(), lastParsedDate)) {
                     stopParsing = true;
                 } else {

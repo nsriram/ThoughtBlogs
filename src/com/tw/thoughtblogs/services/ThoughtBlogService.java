@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.widget.Toast;
+import android.util.Log;
 import com.tw.thoughtblogs.BlogListActivity;
 import com.tw.thoughtblogs.R;
 import com.tw.thoughtblogs.RSSReader;
@@ -19,8 +19,8 @@ import java.util.List;
 
 import static com.tw.thoughtblogs.util.Constants.FEED_URL;
 
-public class ThoughtBlogService extends Service {
-    private final Handler mHandler = new Handler();
+public class ThoughtBlogService extends Service implements Runnable {
+    private Handler mHandler = new Handler();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -29,28 +29,27 @@ public class ThoughtBlogService extends Service {
 
     @Override
     public void onCreate() {
-        mHandler.postDelayed(contentFetchTask, 300000);
+        mHandler.postDelayed(this, 600000);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mHandler.removeCallbacks(contentFetchTask);
-        Toast.makeText(this.getContext(), "ThoughtBlogs Service Stopped.", Toast.LENGTH_LONG).show();
+        mHandler.removeCallbacks(this);
     }
 
-    private Runnable contentFetchTask = new Runnable() {
-        public void run() {
-            Toast.makeText(getContext(), "Loading ThoughtBlogs", Toast.LENGTH_SHORT).show();
-            BlogData blogData = new BlogData(getContext());
-            String lastParsedDate = blogData.lastParsedDate();
-            blogData.close();
-            List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
-            storeBlogs(blogs);
-            mHandler.removeCallbacks(contentFetchTask);
-            mHandler.postDelayed(contentFetchTask, 3600000);
-        }
-    };
+
+    @Override
+    public void run() {
+        BlogData blogData = new BlogData(getContext());
+        String lastParsedDate = blogData.lastParsedDate();
+        blogData.close();
+        RSSReader rssReader = new RSSReader(FEED_URL);
+        List<Blog> blogs = rssReader.fetchLatestEntries(lastParsedDate);
+        storeBlogs(blogs);
+        mHandler.removeCallbacks(this);
+        mHandler.postDelayed(this, 7200000);
+    }
 
     private Context getContext() {
         return this;

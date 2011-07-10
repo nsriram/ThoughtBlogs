@@ -8,15 +8,16 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.tw.thoughtblogs.model.Blog;
 import com.tw.thoughtblogs.model.BlogData;
 import com.tw.thoughtblogs.services.ThoughtBlogService;
 
-import java.util.Date;
 import java.util.List;
 
 import static com.tw.thoughtblogs.util.Constants.FEED_URL;
@@ -31,16 +32,15 @@ public class BlogListActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.v("onCreate", "onCreate");
         setContentView(R.layout.main);
         loadBlogs();
         startFeedContentService();
+        registerForContextMenu(this.getListView());
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.v("onRestart", "onRestart");
         setAdapter(dbFetch());
     }
 
@@ -48,25 +48,6 @@ public class BlogListActivity extends ListActivity {
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
-    }
-
-    private void loadBlogs() {
-        initProgressDialog();
-        new BlogDownloadTask().execute("");
-    }
-
-    private void setListContent(List<Blog> blogs) {
-        dismissProgressDialog();
-        setAdapter(blogs);
-    }
-
-    private void setAdapter(List<Blog> blogs) {
-        this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
-    }
-
-    private void startFeedContentService() {
-        Intent intent = new Intent(context(), ThoughtBlogService.class);
-        startService(intent);
     }
 
     @Override
@@ -79,6 +60,25 @@ public class BlogListActivity extends ListActivity {
         Intent showContent = new Intent(context(), BlogDetailActivity.class);
         showContent.setData(Uri.parse(blogId));
         startActivity(showContent);
+    }
+
+    private void setAdapter(List<Blog> blogs) {
+        this.setListAdapter(new BlogAdapter(context(), R.layout.list_item, blogs));
+    }
+
+    private void loadBlogs() {
+        initProgressDialog();
+        new BlogDownloadTask().execute("");
+    }
+
+    private void setListContent(List<Blog> blogs) {
+        dismissProgressDialog();
+        setAdapter(blogs);
+    }
+
+    private void startFeedContentService() {
+        Intent intent = new Intent(context(), ThoughtBlogService.class);
+        startService(intent);
     }
 
     private List<Blog> dbFetch() {
@@ -104,7 +104,6 @@ public class BlogListActivity extends ListActivity {
             BlogData blogData = new BlogData(context());
             String lastParsedDate = blogData.lastParsedDate();
             blogData.close();
-            Log.v("BlogDownloadTask", "RSS Fetch");
             List<Blog> blogs = new RSSReader(FEED_URL).fetchLatestEntries(lastParsedDate);
             blogData = new BlogData(context());
             blogData.store(blogs);
@@ -127,4 +126,32 @@ public class BlogListActivity extends ListActivity {
         super.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v.getId() == this.getListView().getId()) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            Blog blog = (Blog) getListView().getItemAtPosition(info.position);
+            menu.setHeaderTitle("Manage Blog Entry");
+            menu.add(0, blog.getId(), 0, "Delete");
+            menu.add(0, blog.getId(), 0, "Back");
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getTitle() == "Delete") {
+            delete(item.getItemId() + "");
+            setAdapter(dbFetch());
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private void delete(String id) {
+        BlogData blogData = new BlogData(context());
+        blogData.delete(id);
+        blogData.close();
+    }
 }
