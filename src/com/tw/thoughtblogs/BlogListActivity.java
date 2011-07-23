@@ -127,6 +127,7 @@ public class BlogListActivity extends ListActivity {
             Blog blog = (Blog) getListView().getItemAtPosition(info.position);
             menu.setHeaderTitle("Manage Blog Entry");
             menu.add(0, blog.getId(), 0, "Delete");
+            menu.add(0, blog.getId(), 0, "Delete All");
             menu.add(0, blog.getId(), 0, "Back");
         }
     }
@@ -136,10 +137,19 @@ public class BlogListActivity extends ListActivity {
         if (item.getTitle() == "Delete") {
             delete(item.getItemId() + "");
             setAdapter(dbFetch());
+        } else if (item.getTitle() == "Delete All") {
+            deleteAll();
+            setAdapter(dbFetch());
         } else {
             return false;
         }
         return true;
+    }
+
+    private void deleteAll() {
+        BlogData blogData = new BlogData(getApplicationContext());
+        blogData.deleteAll();
+        blogData.close();
     }
 
     private void delete(String id) {

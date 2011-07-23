@@ -110,4 +110,8 @@ public class BlogData extends SQLiteOpenHelper {
     public void delete(String id) {
         getReadableDatabase().execSQL("delete from events where _id=" + id);
     }
+
+    public void deleteAll() {
+        getReadableDatabase().execSQL("delete from events");
+    }
 }
